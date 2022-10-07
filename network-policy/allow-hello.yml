@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: hello
+  namespace: netology-demo
+spec:
+  podSelector:
+    matchLabels:
+      app: hello
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: multitool
+      ports:
+        - protocol: TCP
+          port: 80
